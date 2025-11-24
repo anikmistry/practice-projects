@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head><title>Todo App</title></head>
+<body>
+  <h1>My Todos</h1>
+  <form id="todoForm">
+    <input type="text" id="todoInput" placeholder="New todo...">
+    <button type="submit" id="addBtn">Add</button>
+  </form>
+  <ul id="todoList"></ul>
+  <div id="errorMsg" style="color:red;"></div>
+
+  <script>
+    const API_URL = 'https://jsonplaceholder.typicode.com/todos';  // Fake API
+    let todos = [];  // Local storage for now
+
+    // Load todos on start
+    fetch(`${API_URL}?_limit=5`)  // Get first 5 todos
+      .then(res => res.json())
+      .then(data => {
+        todos = data.map(t => ({ id: t.id, title: t.title, completed: t.completed }));
+        renderTodos();
+      })
+      .catch(err => showError('Failed to load todos!'));
+
+    // Add todo
+    document.getElementById('todoForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = document.getElementById('todoInput');
+      const title = input.value.trim();
+      if (!title) return showError('Todo cannot be empty!');
+
+      // Fake POST to API
+      fetch(API_URL, {
+        method: 'POST',
+        body: JSON.stringify({ title, completed: false }),
+        headers: { 'Content-type': 'application/json' }
+      })
+      .then(res => res.json())
+      .then(newTodo => {
+        todos.push(newTodo);
+        renderTodos();
+        input.value = '';
+        showError('');  // Clear errors
+      })
+      .catch(err => showError('Failed to add todo!'));
+    });
+
+    // Delete todo (fake DELETE)
+    function deleteTodo(id) {
+      fetch(`${API_URL}/${id}`, { method: 'DELETE' })
+        .then(() => {
+          todos = todos.filter(t => t.id !== id);
+          renderTodos();
+        })
+        .catch(err => showError('Failed to delete!'));
+    }
+
+    // Render list
+    function renderTodos() {
+      const list = document.getElementById('todoList');
+      list.innerHTML = todos.map(t => `
+        <li>
+          <span style="text-decoration: ${t.completed ? 'line-through' : 'none'}">${t.title}</span>
+          <button onclick="deleteTodo(${t.id})">Delete</button>
+        </li>
+      `).join('');
+    }
+
+    // Error helper
+    function showError(msg) {
+      document.getElementById('errorMsg').textContent = msg;
+    }
+  </script>
+</body>
+</html>

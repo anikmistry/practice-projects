@@ -1,0 +1,56 @@
+CV Maker — Workflow
+Date: 2025-11-10
+
+This file contains the project todo list (tracked items, short descriptions, and status).
+
+1) Analyze requirements and current plan
+	- id: 1
+	- description: Read `plan.pcf`, extract explicit and implicit requirements, list assumptions and acceptance criteria.
+	- status: in-progress
+
+2) Define product contract & edge cases
+	- id: 2
+	- description: Write a concise contract (inputs/outputs, data shapes, error modes) and list key edge cases (empty fields, very long text, storage limits, export failures).
+	- status: not-started
+
+3) Choose tech stack and high-level architecture
+	- id: 3
+	- description: Pick libraries/frameworks (React, Vite, Tailwind, drag-n-drop library, PDF export), decide client-only vs server, storage options, and diagram components and data flow.
+	- status: not-started
+
+4) UI/UX and component breakdown
+	- id: 4
+	- description: Design screens/components: editor canvas, sidebar, template selector, section editor, drag-and-drop list, preview, export flow.
+	- status: not-started
+
+5) Data model & state management
+	- id: 5
+	- description: Define JSON schema for CV, component props, actions, and persistence model (localStorage and optional backend API).
+	- status: not-started
+
+6) Drag-and-drop & template implementation plan
+	- id: 6
+	- description: Detail how to implement drag-and-drop, template rendering, editable text blocks, formatting options (bold/paragraph), add/remove sections.
+	- status: not-started
+
+7) Persistence, export and printing
+	- id: 7
+	- description: Plan for saving, versioning, JSON import/export, PDF generation (html-to-pdf), and print-friendly CSS.
+	- status: not-started
+
+8) Tests, linting and CI
+	- id: 8
+	- description: List automated tests (unit/component/e2e), linting rules, and CI steps to run tests/build.
+	- status: not-started
+
+9) Deliverables, timeline and next steps
+	- id: 9
+	- description: Produce final file list, minimal MVP scope, milestones, and suggested timeline.
+	- status: not-started
+
+Current next action: Continue with item 1 (analysis) or pick a development step (scaffold MVP / implement DnD / implement export).
+
+Notes:
+- Save this file to keep the workflow in the repository root `cvMaker/`.
+- Update status values here as tasks progress.
+

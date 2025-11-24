@@ -1,0 +1,1 @@
+This folder contains React components for the CV Maker. The important files are EditorPage.jsx and TemplateRenderer.jsx.
